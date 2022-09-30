@@ -1,9 +1,10 @@
 import './App.css';
+import HomeScreen from './Components/HomeScreen';
 
 function App() {
   return (
     <div className="app">
-      <h1>Movie Streaming Application</h1>
+      <HomeScreen />
     </div>
   );
 }
