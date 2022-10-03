@@ -1,10 +1,29 @@
 import "./css/Banner.css"
 import { useState, useEffect } from "react"
+import axios from "../utils/axios"
+import requests from "../utils/requests"
 
 function Banner() {
+    const [movie, setMovie] = useState([])
+
+    useEffect(() => {
+        // Implementing API to grab Banner Photo
+        async function fetch() {
+            await axios.get(requests.fetchNetflicOriginals)
+                .then((res) => setMovie(res.data.results[Math.floor(Math.random() * res.data.results.length) - 1]))
+        }
+
+        fetch()
+    }, [])
+
+    const truncate = (str, n) => {
+        return str.length > 10 ? str.substring(0, n) + "..." : str;
+    }
+
+    console.log(movie)
     return (
         <div className='banner' style={{
-            backgroundImage: "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3ccd3cde-f8c0-480c-ab9d-4db767bda944/dc0txr7-14cb4e25-21fa-49f2-89a5-169067e6b7d1.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzNjY2QzY2RlLWY4YzAtNDgwYy1hYjlkLTRkYjc2N2JkYTk0NFwvZGMwdHhyNy0xNGNiNGUyNS0yMWZhLTQ5ZjItODlhNS0xNjkwNjdlNmI3ZDEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.fLwk5p4ks16nRV1_JuOhgY8gGabJtu2ZVKlU6ousyNc')",
+            backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
             backgroundSize: "cover",
             backgroundPosition: "center center",
             height: "440px",
@@ -16,7 +35,9 @@ function Banner() {
                     <button className="banner__button">Play</button>
                     <button className="banner__button">My List</button>
                 </div>
-                <h1 class="banner__description">This is a test</h1>
+                <h1 class="banner__description">
+                    {truncate('ttttttttttttttttt', 5)}
+                </h1>
             </div>
             <div class="banner--fadeBottom" />
 
