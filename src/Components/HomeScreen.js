@@ -7,6 +7,7 @@ function HomeScreen() {
         <div className='homeScreen'>
             <Nav />
             <Banner />
+            {/* Rows.JS */}
         </div>
     )
 }

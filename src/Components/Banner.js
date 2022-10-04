@@ -17,26 +17,26 @@ function Banner() {
     }, [])
 
     const truncate = (str, n) => {
-        return str.length > 10 ? str.substring(0, n) + "..." : str;
+        return str?.length > 10 ? str.substring(0, n) + "..." : str;
     }
 
-    console.log(movie)
     return (
         <div className='banner' style={{
-            backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
+            // backgroundImage: `url('https://image.tmdb.org/t/p/original${movie?.backdrop_path}')`,
+            backgroundImage: "url('https://images3.alphacoders.com/882/882548.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center center",
             height: "440px",
             objectFit: "contain"
         }}>
             <div class="banner__contents">
-                <h1 class="banner__title">Movie Name</h1>
+                <h1 class="banner__title">{movie?.original_name}</h1>
                 <div class="banner__buttons">
                     <button className="banner__button">Play</button>
                     <button className="banner__button">My List</button>
                 </div>
                 <h1 class="banner__description">
-                    {truncate('ttttttttttttttttt', 5)}
+                    {truncate(movie?.overview, 150)}
                 </h1>
             </div>
             <div class="banner--fadeBottom" />
